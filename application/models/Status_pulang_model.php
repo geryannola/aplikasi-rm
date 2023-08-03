@@ -30,8 +30,15 @@ class Status_pulang_model extends CI_Model
    }
    public function hapus_data($id)
    {
-
       $this->db->where($id);
       $this->db->delete($this->table);
+   }
+
+   public function tampil_statusPulang()
+   {
+      $result = array();
+      $this->db->select('*');
+      $this->db->from($this->table);
+      return $this->db->get()->result_array();
    }
 }

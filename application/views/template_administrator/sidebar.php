@@ -59,20 +59,19 @@
                 </li>
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <a class="nav-link collapsee" href="#" data-toggle="collapse" data-target="#collapseUtilitiesa" aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa fa-database"></i>
                         <span>Pasien</span>
                     </a>
-                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div id="collapseUtilitiesa" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Jenis Data :</h6>
                             <a class="collapse-item" href=" <?php echo base_url('pasien') ?>">Data Pasien</a>
                             <a class="collapse-item" href=" <?php echo base_url('registrasi') ?>">Daftar Rawat Inap</a>
+                            <a class="collapse-item" href=" <?php echo base_url('pulang') ?>">Daftar Pasien Pulang</a>
                         </div>
                     </div>
                 </li>
-
-
 
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
@@ -103,7 +102,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href=" <?php echo base_url('analisis') ?>">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Analisis Dokumen</span></a>
                 </li>

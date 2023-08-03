@@ -24,7 +24,6 @@ class Pasien_model extends CI_Model
 
         return $this->db->get_where($this->table, $id);
     }
-
     public function update_data($id, $data)
     {
         $this->db->where($this->id, $id);

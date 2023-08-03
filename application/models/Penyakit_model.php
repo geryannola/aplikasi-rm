@@ -15,6 +15,7 @@ class Penyakit_model extends CI_Model
     public function tampil_penyakit()
     {
         $result = array();
+        $this->db->limit(10);
         $this->db->select('*');
         $this->db->from($this->table);
         return $this->db->get()->result_array();

@@ -25,6 +25,7 @@
                 <input type="date" name="tgl_periksa" placeholder="Masukkan Tanggal Periksa" class="form-control">
                 <?php echo form_error('tgl_periksa', '<div class="text-danger small" ml-3>') ?>
             </div>
+
             <div class="form-group">
                 <label>Jaminan</label>
                 <select class="form-control" name="id_jaminan" id="id_ruangan">
@@ -37,13 +38,13 @@
             </div>
             <div class="form-group">
                 <label>Ruangan Perawatan</label>
-                <select class="form-control" name="id_ruangan" id="id_ruangan">
+                <select class="form-control" name="id_ruang_perawatan" id="id_ruang_perawatan">
                     <option value=''>-- Pilih --</option>
                     <?php foreach ($ruang_perawatan as $rows) { ?>
                         <option value="<?php echo $rows['id_ruangan'] ?>"><?php echo $rows['ruang_perawatan'] ?></option>
                     <?php } ?>
                 </select>
-                <?php echo form_error('id_ruangan', '<div class="text-danger small" ml-3>') ?>
+                <?php echo form_error('id_ruang_perawatan', '<div class="text-danger small" ml-3>') ?>
             </div>
             <div class="form-group">
                 <label>Nama Dokter</label>
@@ -57,13 +58,13 @@
             </div>
             <div class="form-group">
                 <label>Nama Penyakit</label>
-                <select class="form-control" name="id_dokter" id="id_dokter">
+                <select class="form-control" name="id_penyakit" id="id_penyakit">
                     <option value=''>-- Pilih --</option>
                     <?php foreach ($penyakit as $rows) { ?>
                         <option value="<?php echo $rows['kd_penyakit'] ?>"><?php echo $rows['kd_penyakit'] ?> - <?php echo $rows['nm_penyakit'] ?></option>
                     <?php } ?>
                 </select>
-                <?php echo form_error('id_dokter', '<div class="text-danger small" ml-3>') ?>
+                <?php echo form_error('id_penyakit', '<div class="text-danger small" ml-3>') ?>
             </div>
             <div class="form-group">
                 <label>Tanggal Pulang</label>

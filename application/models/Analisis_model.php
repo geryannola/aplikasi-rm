@@ -1,6 +1,6 @@
 <?php
 
-class Registrasi_model extends CI_Model
+class Analisis_model extends CI_Model
 {
 
     public $table = 'reg';
@@ -14,7 +14,9 @@ class Registrasi_model extends CI_Model
         $this->db->join('dokter', 'dokter.kd_dokter = reg.id_dokter');
         $this->db->join('ruang_perawatan', 'ruang_perawatan.id_ruangan = reg.id_ruang_perawatan');
         $this->db->join('pasien', 'pasien.id_pasien = reg.id_pasien');
-        $this->db->where('id_status_pulang', 0);
+        $this->db->join('status_pulang', 'status_pulang.id_status = reg.id_status_pulang');
+        $this->db->where('berkas_pulang !=', 0);
+        $this->db->where('analisis_selesai', 0);
         return $this->db->get($this->table);
     }
 

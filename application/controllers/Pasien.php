@@ -14,6 +14,7 @@ class Pasien extends CI_Controller
                 $this->load->model('Dokter_model');
                 $this->load->model('Penyakit_model');
                 $this->load->model('Jaminan_model');
+                $this->load->model('Registrasi_model');
                 $this->load->library('form_validation');
         }
 
@@ -33,11 +34,6 @@ class Pasien extends CI_Controller
                         'no_rm' => set_value('no_rm'),
                         'nm_pasien' => set_value('nm_pasien'),
                 );
-
-                // $data['jk'] = $this->Pasien_model->tampil_jk();
-                // $data['gol_drh'] = $this->Pasien_model->tampil_gol_drh();
-                // $data['agama'] = $this->Pasien_model->tampil_agama();
-                // $data['stts_nikah'] = $this->Pasien_model->tampil_stts_nikah();
 
                 $this->load->view('template_administrator/header');
                 $this->load->view('template_administrator/sidebar');
@@ -63,16 +59,6 @@ class Pasien extends CI_Controller
                 }
         }
 
-        public function _rules()
-        {
-                $this->form_validation->set_rules('no_rm', 'Nomor Rekam Medis', 'required', [
-                        'required' => 'Data Nomor Rekam Medis  wajib diisi!'
-                ]);
-                $this->form_validation->set_rules('nm_pasien', 'Nama Pasien', 'required', [
-                        'required' => 'Data Nama Pasien wajib diisi!'
-                ]);
-        }
-
         public function update($id)
         {
                 $id = array('id_pasien' => $id);
@@ -87,10 +73,8 @@ class Pasien extends CI_Controller
         public function update_aksi()
         {
                 $id = $this->input->post('id');
-
-
                 $data = array(
-                        'nm_pasien'      => $this->input->post('nm_pasien', true),
+                        'nm_pasien' => $this->input->post('nm_pasien', true),
                         'status' => $this->input->post('status', TRUE),
                 );
 
@@ -101,7 +85,6 @@ class Pasien extends CI_Controller
         }
         public function delete($id)
         {
-                // $where = array('kd_Pasien' => $id);
                 $this->Pasien_model->hapus_data($id);
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert"> Data Pasien berhasil dihapus!
                 </div>');
@@ -117,11 +100,6 @@ class Pasien extends CI_Controller
                 $data['penyakit'] = $this->Penyakit_model->tampil_penyakit();
                 $data['jaminan'] = $this->Jaminan_model->tampil_jaminan();
 
-                // $data = array(
-                //         'no_rm' => set_value('no_rm'),
-                //         'nm_pasien' => set_value('nm_pasien'),
-                // );
-
                 $this->load->view('template_administrator/header');
                 $this->load->view('template_administrator/sidebar');
                 $this->load->view('template_administrator/footer');
@@ -130,7 +108,8 @@ class Pasien extends CI_Controller
         public function registrasi_aksi()
         {
                 $id = $this->input->post('id', true);
-                $this->_rules();
+
+                $this->_rules_registrasi();
                 if ($this->form_validation->run() == FALSE) {
                         $this->registrasi($id);
                 } else {
@@ -141,13 +120,40 @@ class Pasien extends CI_Controller
                                 'id_dokter' => $this->input->post('id_dokter', TRUE),
                                 'id_penyakit' => $this->input->post('id_penyakit', TRUE),
                                 'tgl_pulang' => $this->input->post('tgl_pulang', TRUE),
-                                'status_pulang' => $this->input->post('status_pulang', TRUE),
+                                'id_status_pulang' => 0,
                                 'id_jaminan' => $this->input->post('id_jaminan', TRUE),
                         );
-                        $this->Pasien_model->input_data($data);
+                        $this->Registrasi_model->input_data($data);
                         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert"> Data Pasien berhasil ditambahkan!
                     </div>');
                         redirect('Pasien');
                 }
+        }
+        public function _rules()
+        {
+                $this->form_validation->set_rules('no_rm', 'Nomor Rekam Medis', 'required', [
+                        'required' => 'Data Nomor Rekam Medis  wajib diisi!'
+                ]);
+                $this->form_validation->set_rules('nm_pasien', 'Nama Pasien', 'required', [
+                        'required' => 'Data Nama Pasien wajib diisi!'
+                ]);
+        }
+        public function _rules_registrasi()
+        {
+                $this->form_validation->set_rules('tgl_periksa', 'Tanggal Periksa', 'required', [
+                        'required' => 'Tanggal Periksa wajib diisi!'
+                ]);
+                $this->form_validation->set_rules('id_jaminan', 'Jaminan', 'required', [
+                        'required' => 'Data Jaminan wajib diisi!'
+                ]);
+                $this->form_validation->set_rules('id_ruang_perawatan', 'Ruangan Perawatan', 'required', [
+                        'required' => 'Data Ruangan Perawatan wajib diisi!'
+                ]);
+                $this->form_validation->set_rules('id_penyakit', 'Nama Penyakit', 'required', [
+                        'required' => 'Data Penyakit wajib diisi!'
+                ]);
+                $this->form_validation->set_rules('tgl_pulang', 'Tanggal Pulang', 'required', [
+                        'required' => 'Data Tanggal Pulang wajib diisi!'
+                ]);
         }
 }

@@ -30,7 +30,7 @@
                     <td><?php echo $ps->nm_pasien ?></td>
                     <td><?php echo $status ?></td>
                     <td>
-                        <?php echo anchor('pasien/registrasi/' . $ps->id_pasien, '<div class="btn btn-sm btn-primary mx-3"><i class="fa fa-plus-square"></i></div>') ?>
+                        <?php echo anchor('pasien/registrasi/' . $ps->id_pasien, '<div class="btn btn-sm btn-primary"><i class="fa fa-plus-square"></i></div>') ?>
                         <?php echo anchor('pasien/update/' . $ps->id_pasien, '<div class="btn btn-sm btn-primary mx-3"><i class= "fa fa-edit"></i></div>') ?>
                         <?php echo anchor('pasien/delete/' . $ps->id_pasien, '<div class="btn btn-sm btn-danger"><i class= "fa fa-trash"></i></div>') ?>
                     </td>

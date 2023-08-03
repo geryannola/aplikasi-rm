@@ -7,8 +7,6 @@ class Status_pulang extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Status_pulang_model');
-        // $this->load->model('Ruang_perawatan_model');
-        // $this->load->model('Kelas_model');
         $this->load->library('form_validation');
     }
 
