@@ -50,7 +50,17 @@ class Analisis extends CI_Controller
         }
         public function kualitatif($id)
         {
-                $data['pasien'] = $this->Analisis_model->tampil_data()->result();
+                $pasien = $this->Analisis_model->tampil_pasien($id);
+                $id_ruangan = $pasien->id_ruangan;
+                $lembar = $this->Analisis_model->tampil_lembar($id_ruangan);
+                $indikator = $this->Analisis_model->tampil_indikator($id_ruangan);
+
+                $data = array( 
+                        'pasien' => $pasien,
+                        'indikator' => $indikator,
+                        'lembar' => $lembar
+                );
+                // // die();
 
                 $this->load->view('template_administrator/header');
                 $this->load->view('template_administrator/sidebar');

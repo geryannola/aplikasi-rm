@@ -44,8 +44,27 @@ class Analisis_model extends CI_Model
     public function tampil_pasien($id)
     {
         $this->db->join('pasien', 'pasien.id_pasien = reg.id_pasien');
+        $this->db->join('ruang_perawatan', 'ruang_perawatan.id_ruangan = reg.id_ruang_perawatan');
+        $this->db->join('dokter', 'dokter.kd_dokter = reg.id_dokter');
+        $this->db->join('penyakit', 'penyakit.kd_penyakit = reg.id_penyakit');
+        $this->db->join('status_pulang', 'status_pulang.id_status = reg.id_status_pulang');
+        $this->db->join('jaminan', 'jaminan.id_jaminan = reg.id_jaminan');
         $this->db->where($this->id, $id);
-        return $this->db->get_where($this->table);
+        return $this->db->get($this->table)->row();
+    }
+
+    public function tampil_indikator($id_ruangan)
+    {
+        $this->db->where('id_ruangan', $id_ruangan);
+        $this->db->join('lembar', 'lembar.id_lembar = indikator.id_lembar');
+        $this->db->where('lembar.id_lembar', 1);
+        return $this->db->get('indikator')->result();
+    }
+    
+    public function tampil_lembar($id_ruangan)
+    {
+        $this->db->where('id_ruangan', $id_ruangan);
+        return $this->db->get('lembar')->result();
     }
 
     public function pulang_data($id, $data)
